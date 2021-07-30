@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodDiaryBeta", "FoodDiaryBeta\FoodDiaryBeta.csproj", "{9BC01FDE-2A03-4E9D-B74D-193A6EF5BCAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodDiaryBeta.Tests", "FoodDiaryBeta.Tests\FoodDiaryBeta.Tests.csproj", "{DBD21390-0F89-492B-AF12-62B479BC2E2C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9BC01FDE-2A03-4E9D-B74D-193A6EF5BCAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BC01FDE-2A03-4E9D-B74D-193A6EF5BCAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BC01FDE-2A03-4E9D-B74D-193A6EF5BCAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BC01FDE-2A03-4E9D-B74D-193A6EF5BCAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBD21390-0F89-492B-AF12-62B479BC2E2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBD21390-0F89-492B-AF12-62B479BC2E2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBD21390-0F89-492B-AF12-62B479BC2E2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBD21390-0F89-492B-AF12-62B479BC2E2C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2245CE52-7076-46D9-86F3-2289FB46D3E5}
+	EndGlobalSection
+EndGlobal
