@@ -21,9 +21,13 @@ namespace FoodDiaryBeta.Controllers
         }
 
         // GET: User/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View();
+            //incarcam modelul pe baza id-ului
+            Models.UserModel userModel = userRepository.GetUserByID(id);
+
+            //incarcam view-ul pe baza modelului incarcat
+            return View("UserDetails", userModel);
         }
 
         // GET: User/Create
@@ -59,9 +63,12 @@ namespace FoodDiaryBeta.Controllers
         }
 
         // GET: User/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            //incarcarea datelor din db
+            Models.UserModel userModel = userRepository.GetUserByID(id);
+
+            return View("EditUser", userModel);
         }
 
         // POST: User/Edit/5
@@ -71,34 +78,49 @@ namespace FoodDiaryBeta.Controllers
             try
             {
                 // TODO: Add update logic here
+                //instantiem modelul
+                Models.UserModel userModel = new Models.UserModel();
 
+                //incarcam datele in model
+                UpdateModel(userModel);
+
+                //apelam resursa care salveaza datele
+                userRepository.UpdateUser(userModel);
+
+                //redirectionare catre index in caz de succes
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("EditAnnouncement");
             }
         }
 
         // GET: User/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            //incarcam datele in model din DB
+            Models.UserModel userModel = userRepository.GetUserByID(id);
+
+            //incarcam view-ul cu modelul atasat
+            return View("DeleteUser",userModel);
         }
 
         // POST: User/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(Guid id, FormCollection collection)
         {
             try
             {
                 // TODO: Add delete logic here
+                //apelam repository care sterge datele
+                userRepository.DeleteUser(id);
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("DeleteAnnouncement");
             }
         }
     }

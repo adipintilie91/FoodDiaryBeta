@@ -285,6 +285,10 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\MealType\Index.cshtml" />
+    <Content Include="Views\Meal\Index - Copy.cshtml" />
+    <Content Include="Views\User\EditUser.cshtml" />
+    <Content Include="Views\User\DeleteUser.cshtml" />
+    <Content Include="Views\User\UserDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
