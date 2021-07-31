@@ -5,13 +5,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Url.Content("~/Scripts/jquery-ui-1.8.20.js");
+    <script>
+        $(document).ready(function () {
+
+
+        })
+
+
+    </script>
+}*@
+
+
+
 <h2>CreateProduct</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>ProductModel</h4>
         <hr />
@@ -44,6 +59,4 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+

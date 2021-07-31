@@ -32,7 +32,7 @@ namespace FoodDiaryBeta.Repository
 
             if (dbMealType != null)
             {
-                mealTypeModel.ID = dbMealType.Id;
+                mealTypeModel.IDMealType = dbMealType.Id;
                 mealTypeModel.MealTypeName = dbMealType.MealTypeName;
 
                 return mealTypeModel;
@@ -49,7 +49,7 @@ namespace FoodDiaryBeta.Repository
 
             if (dbMealType != null)
             {
-                dbMealType.Id = mealTypeModel.ID;
+                dbMealType.Id = mealTypeModel.IDMealType;
                 dbMealType.MealTypeName = mealTypeModel.MealTypeName;
 
                 return dbMealType;

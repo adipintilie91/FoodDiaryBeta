@@ -7,7 +7,7 @@ namespace FoodDiaryBeta.Models
 {
     public class MealTypeModel
     {
-        public int ID { get; set; }
+        public int IDMealType { get; set; }
         public string MealTypeName { get; set; }
     }
 }

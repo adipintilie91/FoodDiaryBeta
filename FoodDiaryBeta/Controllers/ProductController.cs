@@ -87,6 +87,9 @@ namespace FoodDiaryBeta.Controllers
                 //incarcam datele in model
                 UpdateModel(productModel);
 
+                //apelam resursa care salveaza datele
+                productRepository.UpdateProduct(productModel);
+
                 //returnam view-ul catre index in caz de succes
                 return RedirectToAction("Index");
             }

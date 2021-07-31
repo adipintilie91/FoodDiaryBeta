@@ -14,6 +14,10 @@ namespace FoodDiaryBeta.Controllers
         //adaugam referinta catre repository
         private Repository.MealRepository mealRepository = new Repository.MealRepository();
 
+        //adaugam referinta catre repository MealType
+        private MealTypeRepository mealTypeRepository = new MealTypeRepository();
+
+
         // GET: Meal
         public ActionResult Index()
         {
@@ -35,8 +39,14 @@ namespace FoodDiaryBeta.Controllers
         }
 
         // GET: Meal/Create
+
+
         public ActionResult Create()
         {
+            var mealTypes = mealTypeRepository.GetAllMealTypes();   // List<MealTypeModel> (ID, MealTypeName)
+            SelectList lst = new SelectList(mealTypes, "IDMealType", "MealTypeName"); //SelectList 
+            ViewData["mealType"] = lst; 
+
             return View("CreateMeal");
         }
 
