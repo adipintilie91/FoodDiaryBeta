@@ -73,7 +73,7 @@ namespace FoodDiaryBeta.Controllers
 
         // POST: User/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Guid id, FormCollection collection)
         {
             try
             {
@@ -92,7 +92,7 @@ namespace FoodDiaryBeta.Controllers
             }
             catch
             {
-                return View("EditAnnouncement");
+                return View("EditUser");
             }
         }
 
@@ -120,7 +120,7 @@ namespace FoodDiaryBeta.Controllers
             }
             catch
             {
-                return View("DeleteAnnouncement");
+                return View("DeleteUsert");
             }
         }
     }

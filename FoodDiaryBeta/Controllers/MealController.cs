@@ -1,4 +1,6 @@
-﻿using FoodDiaryBeta.Repository;
+﻿using FoodDiaryBeta.Models;
+using FoodDiaryBeta.Models.DBObjects;
+using FoodDiaryBeta.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,9 +25,13 @@ namespace FoodDiaryBeta.Controllers
         }
 
         // GET: Meal/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View("CreateMeal");
+            //incarcam modelul pe baza id-ului
+            Models.MealModel mealModel = mealRepository.GetMealByID(id);
+
+            //incarcam view-ul pe baza modelului incarcat
+            return View("MealDetails",mealModel);
         }
 
         // GET: Meal/Create
@@ -61,46 +67,66 @@ namespace FoodDiaryBeta.Controllers
         }
 
         // GET: Meal/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            //incarcarea datelor din db
+            Models.MealModel mealModel = mealRepository.GetMealByID(id);
+
+            //incarcarea viewului prin trimitere model incarcat cu date
+            return View("EditMeal", mealModel);
         }
 
         // POST: Meal/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Guid id, FormCollection collection)
         {
             try
             {
                 // TODO: Add update logic here
+                //instantiem modelul
+                Models.MealModel mealModel = new Models.MealModel();
 
+                //incarcam datele in model
+                UpdateModel(mealModel);
+
+                //apelam resursa care salveaza datele
+                mealRepository.UpdateMeal(mealModel);
+
+                //redirectionare catre index in caz de succes
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("EditMeal");
             }
         }
 
         // GET: Meal/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            //incarcam datele in model din db
+            Models.MealModel mealModel = mealRepository.GetMealByID(id);
+
+            //incarcam view-ul cu modelul atasat
+            return View("DeleteMeal", mealModel);
         }
 
         // POST: Meal/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(Guid id, FormCollection collection)
         {
             try
             {
                 // TODO: Add delete logic here
 
+                //apelam repository care sterge datele
+                mealRepository.DeleteMeal(id);
+               
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("DeleteMeal");
             }
         }
     }

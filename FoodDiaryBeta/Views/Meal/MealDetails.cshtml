@@ -1,0 +1,59 @@
+﻿@model FoodDiaryBeta.Models.MealModel
+
+@{
+    ViewBag.Title = "MealDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>MealDetails</h2>
+
+<div>
+    <h4>MealModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IDUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MealDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MealDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDMealType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDMealType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDProduct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDProduct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QTY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QTY)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

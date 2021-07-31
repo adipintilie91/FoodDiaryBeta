@@ -15,7 +15,7 @@ namespace FoodDiaryBeta.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            //incarcam lista de anunturi
+            //incarcam lista de produse
             List<Models.ProductModel> products = productRepository.GetAllProducts();
 
             //incarcam View-ul cu lista de modele
@@ -23,9 +23,13 @@ namespace FoodDiaryBeta.Controllers
         }
 
         // GET: Product/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View();
+            //incarcam modelul pe baza Id-ului
+            Models.ProductModel productModel = productRepository.GetProductByID(id);
+
+            //incarcam view-ul pe baza modelului incarcat
+            return View("ProductDetails", productModel);
         }
 
         // GET: Product/Create
@@ -61,46 +65,62 @@ namespace FoodDiaryBeta.Controllers
         }
 
         // GET: Product/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            //incarcarea datelor din db
+            Models.ProductModel productModel = productRepository.GetProductByID(id);
+
+            //incarcarea view-ului prin trimitere model incarcat cu date
+            return View("EditProduct", productModel);
         }
 
         // POST: Product/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Guid id, FormCollection collection)
         {
             try
             {
                 // TODO: Add update logic here
+                //instantiem modelul
+                Models.ProductModel productModel = new Models.ProductModel();
 
+                //incarcam datele in model
+                UpdateModel(productModel);
+
+                //returnam view-ul catre index in caz de succes
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("EditProduct");
             }
         }
 
         // GET: Product/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            //incarcam datele in model din db
+            Models.ProductModel productModel = productRepository.GetProductByID(id);
+
+            //incarcam view-ul cu modelul atasat
+            return View("DeleteProduct",productModel);
         }
 
         // POST: Product/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(Guid id, FormCollection collection)
         {
             try
             {
                 // TODO: Add delete logic here
+                //apelam repository care sterge datele
+                productRepository.DeleteProduct(id);
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("DeleteProduct");
             }
         }
     }

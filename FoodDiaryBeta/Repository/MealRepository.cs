@@ -122,7 +122,7 @@ namespace FoodDiaryBeta.Repository
             }
         }
 
-        public void DeleteAnnouncement(Guid ID)
+        public void DeleteMeal(Guid ID)
         {
             //get existing record to delete
             Models.DBObjects.Meal mealToDelete = dbContext.Meals.FirstOrDefault(x => x.ID == ID);
