@@ -1,7 +1,9 @@
 ﻿using FoodDiaryBeta.Models;
 using FoodDiaryBeta.Models.DBObjects;
+using FoodDiaryBeta.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Web;
@@ -9,11 +11,11 @@ using System.Web;
 namespace FoodDiaryBeta.Repository
 {
     public class UserRepository
-        //GetAllUsers()
-        //GetUserByID
-        //InsertUser
-        //UpdateUser
-        //DeleteUser
+    //GetAllUsers()
+    //GetUserByID
+    //InsertUser
+    //UpdateUser
+    //DeleteUser
     {
         // injectam container-ul ORM / Data Context-ul
         private Models.DBObjects.FoodDiaryBetaModelsDataContext dbContext;
@@ -72,6 +74,26 @@ namespace FoodDiaryBeta.Repository
             return null;
         }
 
+        ////implementam metoda care va incarca date in ViewModel
+        //public UserMealsViewModel GetUserMeals(Guid userID)
+        //{
+        //    UserMealsViewModel userMealsViewModel = new UserMealsViewModel()
+
+
+        //    User user = FoodDiaryBetaModelsDataContext.Users.FirstOrDefault(x => x.Id == user);
+        //    if (user != null))
+        //    {
+        //        userMealsViewModel.Email = user.Email;
+        //        IQueryable<Meal> userMeals = FoodDiaryBetaModelsDataContext.Meals.Where(x => x.ID == userID);
+        //        foreach (MealModel dbMealModel in userMeals)
+        //        {
+        //            Models.MealModel mealModel = new Models.MealModel();
+        //            mealModel.ID = dbMealModel.ID;
+        //            mealModel.ID = dbMealModel.ID;
+        //        }
+        //    }
+        //    return userMealsViewModel;
+        //}
 
         public List<UserModel> GetAllUsers()
         {
@@ -91,7 +113,7 @@ namespace FoodDiaryBeta.Repository
 
         public void InsertUser(UserModel userModel)
         {
-            
+
             userModel.ID = Guid.NewGuid();  //generate new ID for every new record
             dbContext.Users.InsertOnSubmit(MapModelToDbObject(userModel));   //add to ORM layer
             dbContext.SubmitChanges();   //commit to db

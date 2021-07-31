@@ -61,6 +61,17 @@
 
     </dl>
 </div>
+
+@*@foreach (var item in Model.Meals)
+{
+    <div>
+        <p>
+            @Html.DisplayFor(modelItem)
+        </p>
+    </div>
+}*@
+
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")

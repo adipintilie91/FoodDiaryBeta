@@ -209,6 +209,7 @@
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\UserMealsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\FoodDiaryBetaDB.mdf" />
