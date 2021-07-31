@@ -17,10 +17,19 @@ namespace FoodDiaryBeta.Models
 
         public int IDMealType { get; set; }
 
+        //public MealTypesEnum MealTypesEnum {get;set;}
+
         public Guid IDProduct { get; set; }
 
         [Required(ErrorMessage = "Mandatory field")]
         public int QTY { get; set; }
 
     }
+
+    //public enum MealTypesEnum
+    //{ 
+    //    Breakfast = 0,
+    //    Lunch = 1,
+    //    Dinner = 2
+    //}
 }

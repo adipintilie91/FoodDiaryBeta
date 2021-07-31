@@ -294,6 +294,10 @@
     <Content Include="Views\Meal\EditMeal.cshtml" />
     <Content Include="Views\Meal\Delete.cshtml" />
     <Content Include="Views\Meal\MealDetails.cshtml" />
+    <Content Include="Views\MealType\CreateMealType.cshtml" />
+    <Content Include="Views\MealType\EditMealType.cshtml" />
+    <Content Include="Views\MealType\DeleteMealType.cshtml" />
+    <Content Include="Views\MealType\DetailsMealType.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

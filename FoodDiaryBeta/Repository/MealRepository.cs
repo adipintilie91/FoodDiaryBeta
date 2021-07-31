@@ -78,6 +78,8 @@ namespace FoodDiaryBeta.Repository
             {
                 mealList.Add(MapDbObjectToModel(dbMeal));
             }
+            IQueryable<MealModel> list = mealList.AsQueryable();
+
             return mealList;
         }
 

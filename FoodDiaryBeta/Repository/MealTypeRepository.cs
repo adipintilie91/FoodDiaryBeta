@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace FoodDiaryBeta.Repository
 {
@@ -64,6 +65,7 @@ namespace FoodDiaryBeta.Repository
             {
                 mealTypeList.Add(MapDbObjectToModel(dbMealType));
             }
+
             return mealTypeList;
         }
 
@@ -72,8 +74,36 @@ namespace FoodDiaryBeta.Repository
             return MapDbObjectToModel(dbContext.MealTypes.FirstOrDefault(x => x.Id == ID));
         }
 
+        public void InsertMealType(MealTypeModel mealTypeModel)
+        {
+            dbContext.MealTypes.InsertOnSubmit(MapModelToDbObject(mealTypeModel));   //add to ORM layer
+            dbContext.SubmitChanges();   //commit to db
+        }
 
+        public void UpdateMealType(MealTypeModel mealTypeModel)
+        {
+            //get existing record to update
+            Models.DBObjects.MealType existingMealType = dbContext.MealTypes.FirstOrDefault(x => x.Id == mealTypeModel.IDMealType);
 
+            if (existingMealType != null)
+            {
+                //map updated values with keeping the ORM object reference
+                existingMealType.Id = mealTypeModel.IDMealType;
+                existingMealType.MealTypeName = mealTypeModel.MealTypeName;
+
+                dbContext.SubmitChanges();
+            }
+        }
+        public void DeleteMealType(int ID)
+        {
+            //get existing record to delete
+            Models.DBObjects.MealType mealTypeToDelete = dbContext.MealTypes.FirstOrDefault(x => x.Id == ID);
+
+            if (mealTypeToDelete != null)
+            {
+                dbContext.MealTypes.DeleteOnSubmit(mealTypeToDelete);   //mark for deletion
+                dbContext.SubmitChanges();    //commit to db
+            }
+        }
     }
-
 }
