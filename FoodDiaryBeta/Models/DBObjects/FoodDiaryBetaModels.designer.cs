@@ -30,15 +30,12 @@ namespace FoodDiaryBeta.Models.DBObjects
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertUser(User instance);
-    partial void UpdateUser(User instance);
-    partial void DeleteUser(User instance);
     partial void InsertMeal(Meal instance);
     partial void UpdateMeal(Meal instance);
     partial void DeleteMeal(Meal instance);
-    partial void InsertMealType(MealType instance);
-    partial void UpdateMealType(MealType instance);
-    partial void DeleteMealType(MealType instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
     partial void InsertProduct(Product instance);
     partial void UpdateProduct(Product instance);
     partial void DeleteProduct(Product instance);
@@ -74,14 +71,6 @@ namespace FoodDiaryBeta.Models.DBObjects
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<User> Users
-		{
-			get
-			{
-				return this.GetTable<User>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Meal> Meals
 		{
 			get
@@ -90,11 +79,11 @@ namespace FoodDiaryBeta.Models.DBObjects
 			}
 		}
 		
-		public System.Data.Linq.Table<MealType> MealTypes
+		public System.Data.Linq.Table<User> Users
 		{
 			get
 			{
-				return this.GetTable<MealType>();
+				return this.GetTable<User>();
 			}
 		}
 		
@@ -103,6 +92,270 @@ namespace FoodDiaryBeta.Models.DBObjects
 			get
 			{
 				return this.GetTable<Product>();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Meal")]
+	public partial class Meal : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ID;
+		
+		private System.Guid _IDUser;
+		
+		private System.DateTime _MealDate;
+		
+		private int _MealType;
+		
+		private System.Nullable<System.Guid> _IDProductConsumed;
+		
+		private int _QTY;
+		
+		private EntityRef<User> _User;
+		
+		private EntityRef<Product> _Product;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(System.Guid value);
+    partial void OnIDChanged();
+    partial void OnIDUserChanging(System.Guid value);
+    partial void OnIDUserChanged();
+    partial void OnMealDateChanging(System.DateTime value);
+    partial void OnMealDateChanged();
+    partial void OnMealTypeChanging(int value);
+    partial void OnMealTypeChanged();
+    partial void OnIDProductConsumedChanging(System.Nullable<System.Guid> value);
+    partial void OnIDProductConsumedChanged();
+    partial void OnQTYChanging(int value);
+    partial void OnQTYChanged();
+    #endregion
+		
+		public Meal()
+		{
+			this._User = default(EntityRef<User>);
+			this._Product = default(EntityRef<Product>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDUser", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid IDUser
+		{
+			get
+			{
+				return this._IDUser;
+			}
+			set
+			{
+				if ((this._IDUser != value))
+				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIDUserChanging(value);
+					this.SendPropertyChanging();
+					this._IDUser = value;
+					this.SendPropertyChanged("IDUser");
+					this.OnIDUserChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MealDate", DbType="DateTime NOT NULL")]
+		public System.DateTime MealDate
+		{
+			get
+			{
+				return this._MealDate;
+			}
+			set
+			{
+				if ((this._MealDate != value))
+				{
+					this.OnMealDateChanging(value);
+					this.SendPropertyChanging();
+					this._MealDate = value;
+					this.SendPropertyChanged("MealDate");
+					this.OnMealDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MealType", DbType="Int NOT NULL")]
+		public int MealType
+		{
+			get
+			{
+				return this._MealType;
+			}
+			set
+			{
+				if ((this._MealType != value))
+				{
+					this.OnMealTypeChanging(value);
+					this.SendPropertyChanging();
+					this._MealType = value;
+					this.SendPropertyChanged("MealType");
+					this.OnMealTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDProductConsumed", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> IDProductConsumed
+		{
+			get
+			{
+				return this._IDProductConsumed;
+			}
+			set
+			{
+				if ((this._IDProductConsumed != value))
+				{
+					if (this._Product.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIDProductConsumedChanging(value);
+					this.SendPropertyChanging();
+					this._IDProductConsumed = value;
+					this.SendPropertyChanged("IDProductConsumed");
+					this.OnIDProductConsumedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QTY", DbType="Int NOT NULL")]
+		public int QTY
+		{
+			get
+			{
+				return this._QTY;
+			}
+			set
+			{
+				if ((this._QTY != value))
+				{
+					this.OnQTYChanging(value);
+					this.SendPropertyChanging();
+					this._QTY = value;
+					this.SendPropertyChanged("QTY");
+					this.OnQTYChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Meal", Storage="_User", ThisKey="IDUser", OtherKey="Id", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.Meals1.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.Meals1.Add(this);
+						this._IDUser = value.Id;
+					}
+					else
+					{
+						this._IDUser = default(System.Guid);
+					}
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_Meal", Storage="_Product", ThisKey="IDProductConsumed", OtherKey="ID", IsForeignKey=true)]
+		public Product Product
+		{
+			get
+			{
+				return this._Product.Entity;
+			}
+			set
+			{
+				Product previousValue = this._Product.Entity;
+				if (((previousValue != value) 
+							|| (this._Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Product.Entity = null;
+						previousValue.Meals.Remove(this);
+					}
+					this._Product.Entity = value;
+					if ((value != null))
+					{
+						value.Meals.Add(this);
+						this._IDProductConsumed = value.ID;
+					}
+					else
+					{
+						this._IDProductConsumed = default(Nullable<System.Guid>);
+					}
+					this.SendPropertyChanged("Product");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -341,425 +594,6 @@ namespace FoodDiaryBeta.Models.DBObjects
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Meal")]
-	public partial class Meal : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _ID;
-		
-		private System.Guid _IDUser;
-		
-		private System.DateTime _MealDate;
-		
-		private int _IDMealType;
-		
-		private System.Guid _IDProduct;
-		
-		private int _QTY;
-		
-		private EntityRef<User> _User;
-		
-		private EntityRef<MealType> _MealType;
-		
-		private EntityRef<Product> _Product;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(System.Guid value);
-    partial void OnIDChanged();
-    partial void OnIDUserChanging(System.Guid value);
-    partial void OnIDUserChanged();
-    partial void OnMealDateChanging(System.DateTime value);
-    partial void OnMealDateChanged();
-    partial void OnIDMealTypeChanging(int value);
-    partial void OnIDMealTypeChanged();
-    partial void OnIDProductChanging(System.Guid value);
-    partial void OnIDProductChanged();
-    partial void OnQTYChanging(int value);
-    partial void OnQTYChanged();
-    #endregion
-		
-		public Meal()
-		{
-			this._User = default(EntityRef<User>);
-			this._MealType = default(EntityRef<MealType>);
-			this._Product = default(EntityRef<Product>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDUser", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid IDUser
-		{
-			get
-			{
-				return this._IDUser;
-			}
-			set
-			{
-				if ((this._IDUser != value))
-				{
-					if (this._User.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIDUserChanging(value);
-					this.SendPropertyChanging();
-					this._IDUser = value;
-					this.SendPropertyChanged("IDUser");
-					this.OnIDUserChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MealDate", DbType="DateTime NOT NULL")]
-		public System.DateTime MealDate
-		{
-			get
-			{
-				return this._MealDate;
-			}
-			set
-			{
-				if ((this._MealDate != value))
-				{
-					this.OnMealDateChanging(value);
-					this.SendPropertyChanging();
-					this._MealDate = value;
-					this.SendPropertyChanged("MealDate");
-					this.OnMealDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDMealType", DbType="Int NOT NULL")]
-		public int IDMealType
-		{
-			get
-			{
-				return this._IDMealType;
-			}
-			set
-			{
-				if ((this._IDMealType != value))
-				{
-					if (this._MealType.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIDMealTypeChanging(value);
-					this.SendPropertyChanging();
-					this._IDMealType = value;
-					this.SendPropertyChanged("IDMealType");
-					this.OnIDMealTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDProduct", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid IDProduct
-		{
-			get
-			{
-				return this._IDProduct;
-			}
-			set
-			{
-				if ((this._IDProduct != value))
-				{
-					if (this._Product.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIDProductChanging(value);
-					this.SendPropertyChanging();
-					this._IDProduct = value;
-					this.SendPropertyChanged("IDProduct");
-					this.OnIDProductChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QTY", DbType="Int NOT NULL")]
-		public int QTY
-		{
-			get
-			{
-				return this._QTY;
-			}
-			set
-			{
-				if ((this._QTY != value))
-				{
-					this.OnQTYChanging(value);
-					this.SendPropertyChanging();
-					this._QTY = value;
-					this.SendPropertyChanged("QTY");
-					this.OnQTYChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Meal", Storage="_User", ThisKey="IDUser", OtherKey="Id", IsForeignKey=true)]
-		public User User
-		{
-			get
-			{
-				return this._User.Entity;
-			}
-			set
-			{
-				User previousValue = this._User.Entity;
-				if (((previousValue != value) 
-							|| (this._User.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User.Entity = null;
-						previousValue.Meals1.Remove(this);
-					}
-					this._User.Entity = value;
-					if ((value != null))
-					{
-						value.Meals1.Add(this);
-						this._IDUser = value.Id;
-					}
-					else
-					{
-						this._IDUser = default(System.Guid);
-					}
-					this.SendPropertyChanged("User");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MealType_Meal", Storage="_MealType", ThisKey="IDMealType", OtherKey="Id", IsForeignKey=true)]
-		public MealType MealType
-		{
-			get
-			{
-				return this._MealType.Entity;
-			}
-			set
-			{
-				MealType previousValue = this._MealType.Entity;
-				if (((previousValue != value) 
-							|| (this._MealType.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MealType.Entity = null;
-						previousValue.Meals.Remove(this);
-					}
-					this._MealType.Entity = value;
-					if ((value != null))
-					{
-						value.Meals.Add(this);
-						this._IDMealType = value.Id;
-					}
-					else
-					{
-						this._IDMealType = default(int);
-					}
-					this.SendPropertyChanged("MealType");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_Meal", Storage="_Product", ThisKey="IDProduct", OtherKey="ID", IsForeignKey=true)]
-		public Product Product
-		{
-			get
-			{
-				return this._Product.Entity;
-			}
-			set
-			{
-				Product previousValue = this._Product.Entity;
-				if (((previousValue != value) 
-							|| (this._Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Product.Entity = null;
-						previousValue.Meals.Remove(this);
-					}
-					this._Product.Entity = value;
-					if ((value != null))
-					{
-						value.Meals.Add(this);
-						this._IDProduct = value.ID;
-					}
-					else
-					{
-						this._IDProduct = default(System.Guid);
-					}
-					this.SendPropertyChanged("Product");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MealType")]
-	public partial class MealType : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _MealTypeName;
-		
-		private EntitySet<Meal> _Meals;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnMealTypeNameChanging(string value);
-    partial void OnMealTypeNameChanged();
-    #endregion
-		
-		public MealType()
-		{
-			this._Meals = new EntitySet<Meal>(new Action<Meal>(this.attach_Meals), new Action<Meal>(this.detach_Meals));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MealTypeName", DbType="VarChar(250)")]
-		public string MealTypeName
-		{
-			get
-			{
-				return this._MealTypeName;
-			}
-			set
-			{
-				if ((this._MealTypeName != value))
-				{
-					this.OnMealTypeNameChanging(value);
-					this.SendPropertyChanging();
-					this._MealTypeName = value;
-					this.SendPropertyChanged("MealTypeName");
-					this.OnMealTypeNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MealType_Meal", Storage="_Meals", ThisKey="Id", OtherKey="IDMealType")]
-		public EntitySet<Meal> Meals
-		{
-			get
-			{
-				return this._Meals;
-			}
-			set
-			{
-				this._Meals.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Meals(Meal entity)
-		{
-			this.SendPropertyChanging();
-			entity.MealType = this;
-		}
-		
-		private void detach_Meals(Meal entity)
-		{
-			this.SendPropertyChanging();
-			entity.MealType = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Product")]
 	public partial class Product : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -852,7 +686,7 @@ namespace FoodDiaryBeta.Models.DBObjects
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_Meal", Storage="_Meals", ThisKey="ID", OtherKey="IDProduct")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_Meal", Storage="_Meals", ThisKey="ID", OtherKey="IDProductConsumed")]
 		public EntitySet<Meal> Meals
 		{
 			get

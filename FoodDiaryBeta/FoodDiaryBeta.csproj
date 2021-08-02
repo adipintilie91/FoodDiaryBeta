@@ -185,7 +185,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MealController.cs" />
-    <Compile Include="Controllers\MealTypeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -200,12 +199,10 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MealModel.cs" />
-    <Compile Include="Models\MealTypeModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\MealRepository.cs" />
-    <Compile Include="Repository\MealTypeRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Startup.cs" />
@@ -281,11 +278,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\User\CreateUser.cshtml" />
     <Content Include="Views\Product\CreateProduct.cshtml" />
-    <Content Include="Views\Meal\CreateMeal.cshtml" />
     <Content Include="Views\Meal\Index.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\MealType\Index.cshtml" />
     <Content Include="Views\User\EditUser.cshtml" />
     <Content Include="Views\User\DeleteUser.cshtml" />
     <Content Include="Views\User\UserDetails.cshtml" />
@@ -295,10 +290,7 @@
     <Content Include="Views\Meal\EditMeal.cshtml" />
     <Content Include="Views\Meal\Delete.cshtml" />
     <Content Include="Views\Meal\MealDetails.cshtml" />
-    <Content Include="Views\MealType\CreateMealType.cshtml" />
-    <Content Include="Views\MealType\EditMealType.cshtml" />
-    <Content Include="Views\MealType\DeleteMealType.cshtml" />
-    <Content Include="Views\MealType\DetailsMealType.cshtml" />
+    <Content Include="Views\Meal\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

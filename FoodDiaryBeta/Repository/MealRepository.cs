@@ -1,5 +1,6 @@
 ﻿using FoodDiaryBeta.Models;
 using FoodDiaryBeta.Models.DBObjects;
+using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -31,6 +32,10 @@ namespace FoodDiaryBeta.Repository
             this.dbContext = dbContext;
         }
 
+                                            //DB => Model(Front End)
+                                            //GET (Pull Data from DB)
+
+
         //map ORM Model to Model Object - mapper method
         //mapam modelul ORM pe Model/Clasa
         private MealModel MapDbObjectToModel(Models.DBObjects.Meal dbMeal)
@@ -42,8 +47,10 @@ namespace FoodDiaryBeta.Repository
                 mealModel.ID = dbMeal.ID;
                 mealModel.IDUser = dbMeal.IDUser;
                 mealModel.MealDate = dbMeal.MealDate;
-                mealModel.IDMealType = dbMeal.IDMealType;
-                mealModel.IDProduct = dbMeal.IDProduct;
+                //int a = mealModel.MealTypeSelection;
+
+                mealModel.MealTypeSelection = (MealType)dbMeal.MealType;
+                mealModel.IDProductConsumed = dbMeal.IDProductConsumed;
                 mealModel.QTY = dbMeal.QTY;
 
                 return mealModel;
@@ -51,23 +58,9 @@ namespace FoodDiaryBeta.Repository
             return null;
         }
 
-        //map Model object to ORM Model - mapper method
-        //mapam Modelul(clasa) pe ORM)
-        private Models.DBObjects.Meal MapModelToDbObject(MealModel mealModel)
+        public MealModel GetMealByID(Guid ID)
         {
-            Models.DBObjects.Meal dbMealModel = new Models.DBObjects.Meal();
-            if (mealModel != null)
-            {
-                dbMealModel.ID = mealModel.ID;
-                dbMealModel.IDUser = mealModel.IDUser;
-                dbMealModel.MealDate = mealModel.MealDate;
-                dbMealModel.IDMealType = mealModel.IDMealType;
-                dbMealModel.IDProduct = mealModel.IDProduct;
-                dbMealModel.QTY = mealModel.QTY;
-
-                return dbMealModel;
-            }
-            return null;
+            return MapDbObjectToModel(dbContext.Meals.FirstOrDefault(x => x.ID == ID));
         }
 
         public List<MealModel> GetAllMeals()
@@ -78,14 +71,9 @@ namespace FoodDiaryBeta.Repository
             {
                 mealList.Add(MapDbObjectToModel(dbMeal));
             }
-            IQueryable<MealModel> list = mealList.AsQueryable();
+            //IQueryable<MealModel> list = mealList.AsQueryable();
 
             return mealList;
-        }
-
-        public MealModel GetMealByID(Guid ID)
-        {
-            return MapDbObjectToModel(dbContext.Meals.FirstOrDefault(x => x.ID == ID));
         }
 
         public List<MealModel> GetMealsByMealDate(DateTime dateTime)
@@ -97,6 +85,30 @@ namespace FoodDiaryBeta.Repository
                 mealList.Add(MapDbObjectToModel(dbMeal));
             }
             return mealList;
+        }
+                        
+                        // SEND TO DB
+                        // MODEL(Front-End) => ORM(BD)
+                        // INSERT/CREATE/UPDATE/DELETE
+
+        //map Model object to ORM Model - mapper method
+        //mapam Modelul(clasa) pe ORM)
+        private Models.DBObjects.Meal MapModelToDbObject(MealModel mealModel)
+        {
+            Models.DBObjects.Meal dbMealModel = new Models.DBObjects.Meal();
+            if (mealModel != null)
+            {
+                dbMealModel.ID = mealModel.ID;
+                dbMealModel.IDUser = mealModel.IDUser;
+                dbMealModel.MealDate = mealModel.MealDate;
+                //dbMealModel.MealType = Enum.GetUnderlyingType(mealModel.MealTypeSelection);
+                dbMealModel.MealType = (int)mealModel.MealTypeSelection;
+                dbMealModel.IDProductConsumed = mealModel.IDProductConsumed;
+                dbMealModel.QTY = mealModel.QTY;
+
+                return dbMealModel;
+            }
+            return null;
         }
 
         public void InsertMeal(MealModel mealModel)
@@ -116,8 +128,8 @@ namespace FoodDiaryBeta.Repository
                 existingMeal.ID = mealModel.ID;
                 existingMeal.IDUser = mealModel.IDUser;
                 existingMeal.MealDate = mealModel.MealDate;
-                existingMeal.IDMealType = mealModel.IDMealType;
-                existingMeal.IDProduct = mealModel.IDProduct;
+                existingMeal.MealType = (int)mealModel.MealTypeSelection;
+                existingMeal.IDProductConsumed = mealModel.IDProductConsumed;
                 existingMeal.QTY = mealModel.QTY;
 
                 dbContext.SubmitChanges(); //commit to db
@@ -134,9 +146,5 @@ namespace FoodDiaryBeta.Repository
                 dbContext.SubmitChanges(); //commmit to db
             }
         }
-
-
-
-
     }
 }

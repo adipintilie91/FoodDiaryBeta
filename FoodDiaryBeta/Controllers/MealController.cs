@@ -42,11 +42,11 @@ namespace FoodDiaryBeta.Controllers
 
         public ActionResult Create()
         {
-            var products = productRepository.GetAllProducts();
-            SelectList lst = new SelectList(products, "ID", "ProductName");
-            ViewData["product"] = lst;
+            //var products = productRepository.GetAllProducts();
+            //SelectList lst = new SelectList(products, "ID", "ProductName");
+            //ViewData["product"] = lst;
 
-            return View("CreateMeal");
+            return View("Create");
         }
 
         // POST: Meal/Create
@@ -71,7 +71,7 @@ namespace FoodDiaryBeta.Controllers
             catch
             {
                 //redirect catre view-ul curent in caz de erori/exceptii(pentru afisarea mesajului)
-                return View("CreateMeal");
+                return View("Create");
             }
         }
 
