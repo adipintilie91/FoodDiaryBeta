@@ -44,7 +44,7 @@ namespace FoodDiaryBeta.Controllers
         {
 
             var products = productRepository.GetAllProducts();
-            SelectList lst = new SelectList(products, "ID", "ProductName");
+            SelectList lst = new SelectList(products, "ID", "ProductName", "Calories");
             ViewData["product"] = lst;
 
             return View("Create");
