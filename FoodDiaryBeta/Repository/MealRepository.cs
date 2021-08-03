@@ -47,8 +47,6 @@ namespace FoodDiaryBeta.Repository
                 mealModel.ID = dbMeal.ID;
                 mealModel.IDUser = dbMeal.IDUser;
                 mealModel.MealDate = dbMeal.MealDate;
-                //int a = mealModel.MealTypeSelection;
-
                 mealModel.MealTypeSelection = (MealType)dbMeal.MealType;
                 mealModel.IDProductConsumed = dbMeal.IDProductConsumed;
                 mealModel.QTY = dbMeal.QTY;

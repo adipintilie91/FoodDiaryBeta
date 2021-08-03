@@ -45,7 +45,7 @@ namespace FoodDiaryBeta.Repository
                 userModel.DOB = dbUser.DOB;
                 userModel.Weigth = dbUser.Weigth;
                 userModel.Height = dbUser.Height;
-                userModel.Gender = dbUser.Gender;
+                userModel.GenderSelection = (Gender)dbUser.Gender;
                 userModel.Meals = dbUser.Meals;
 
                 return userModel;
@@ -66,7 +66,7 @@ namespace FoodDiaryBeta.Repository
                 dbUserModel.DOB = userModel.DOB;
                 dbUserModel.Weigth = userModel.Weigth;
                 dbUserModel.Height = userModel.Height;
-                dbUserModel.Gender = userModel.Gender;
+                dbUserModel.Gender = (int)userModel.GenderSelection;
                 dbUserModel.Meals = userModel.Meals;
 
                 return dbUserModel;
@@ -132,7 +132,7 @@ namespace FoodDiaryBeta.Repository
                 existingUser.DOB = userModel.DOB;
                 existingUser.Weigth = userModel.Weigth;
                 existingUser.Height = userModel.Height;
-                existingUser.Gender = userModel.Gender;
+                existingUser.Gender = (int)userModel.GenderSelection;
                 existingUser.Meals = userModel.Meals;
 
                 dbContext.SubmitChanges();

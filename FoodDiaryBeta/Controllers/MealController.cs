@@ -42,9 +42,10 @@ namespace FoodDiaryBeta.Controllers
 
         public ActionResult Create()
         {
-            //var products = productRepository.GetAllProducts();
-            //SelectList lst = new SelectList(products, "ID", "ProductName");
-            //ViewData["product"] = lst;
+
+            var products = productRepository.GetAllProducts();
+            SelectList lst = new SelectList(products, "ID", "ProductName");
+            ViewData["product"] = lst;
 
             return View("Create");
         }
@@ -68,9 +69,10 @@ namespace FoodDiaryBeta.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception e)
             {
                 //redirect catre view-ul curent in caz de erori/exceptii(pentru afisarea mesajului)
+
                 return View("Create");
             }
         }

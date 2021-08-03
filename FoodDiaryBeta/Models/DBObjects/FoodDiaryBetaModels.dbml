@@ -1,5 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FoodDiaryBetaDB" Class="FoodDiaryBetaModelsDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\FoodDiaryBetaDB.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="FoodDiaryBetaDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="DOB" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Weigth" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Height" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Gender" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Meals" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="User_Meal" Member="Meals1" ThisKey="Id" OtherKey="IDUser" Type="Meal" />
+    </Type>
+  </Table>
   <Table Name="dbo.Meal" Member="Meals">
     <Type Name="Meal">
       <Column Name="ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -10,18 +22,6 @@
       <Column Name="QTY" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="User_Meal" Member="User" ThisKey="IDUser" OtherKey="Id" Type="User" IsForeignKey="true" />
       <Association Name="Product_Meal" Member="Product" ThisKey="IDProductConsumed" OtherKey="ID" Type="Product" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.[User]" Member="Users">
-    <Type Name="User">
-      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Email" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="DOB" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Column Name="Weigth" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="Height" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="Gender" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="Meals" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Association Name="User_Meal" Member="Meals1" ThisKey="Id" OtherKey="IDUser" Type="Meal" />
     </Type>
   </Table>
   <Table Name="dbo.Product" Member="Products">

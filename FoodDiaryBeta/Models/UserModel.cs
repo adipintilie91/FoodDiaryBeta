@@ -26,9 +26,14 @@ namespace FoodDiaryBeta.Models
         public double Height { get; set; }
 
         [Required(ErrorMessage = "Mandatory field")]
-        //[StringLength(250, ErrorMessage = "Text too long (max. 250 chars)")]
-        public string Gender { get; set; }
+        public Gender GenderSelection { get; set; }
 
         public Guid? Meals { get; set; }
+    }
+
+    public enum Gender
+    {
+        Male,
+        Female
     }
 }

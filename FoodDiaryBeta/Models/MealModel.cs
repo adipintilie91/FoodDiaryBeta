@@ -30,4 +30,6 @@ namespace FoodDiaryBeta.Models
         Lunch = 1,
         Dinner = 2
     }
+
+
 }

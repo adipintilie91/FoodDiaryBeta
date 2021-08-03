@@ -30,12 +30,12 @@ namespace FoodDiaryBeta.Models.DBObjects
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertMeal(Meal instance);
-    partial void UpdateMeal(Meal instance);
-    partial void DeleteMeal(Meal instance);
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
+    partial void InsertMeal(Meal instance);
+    partial void UpdateMeal(Meal instance);
+    partial void DeleteMeal(Meal instance);
     partial void InsertProduct(Product instance);
     partial void UpdateProduct(Product instance);
     partial void DeleteProduct(Product instance);
@@ -71,19 +71,19 @@ namespace FoodDiaryBeta.Models.DBObjects
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Meal> Meals
-		{
-			get
-			{
-				return this.GetTable<Meal>();
-			}
-		}
-		
 		public System.Data.Linq.Table<User> Users
 		{
 			get
 			{
 				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Meal> Meals
+		{
+			get
+			{
+				return this.GetTable<Meal>();
 			}
 		}
 		
@@ -93,6 +93,240 @@ namespace FoodDiaryBeta.Models.DBObjects
 			{
 				return this.GetTable<Product>();
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[User]")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _Id;
+		
+		private string _Email;
+		
+		private System.DateTime _DOB;
+		
+		private double _Weigth;
+		
+		private double _Height;
+		
+		private int _Gender;
+		
+		private System.Nullable<System.Guid> _Meals;
+		
+		private EntitySet<Meal> _Meals1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(System.Guid value);
+    partial void OnIdChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnDOBChanging(System.DateTime value);
+    partial void OnDOBChanged();
+    partial void OnWeigthChanging(double value);
+    partial void OnWeigthChanged();
+    partial void OnHeightChanging(double value);
+    partial void OnHeightChanged();
+    partial void OnGenderChanging(int value);
+    partial void OnGenderChanged();
+    partial void OnMealsChanging(System.Nullable<System.Guid> value);
+    partial void OnMealsChanged();
+    #endregion
+		
+		public User()
+		{
+			this._Meals1 = new EntitySet<Meal>(new Action<Meal>(this.attach_Meals1), new Action<Meal>(this.detach_Meals1));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DOB", DbType="Date NOT NULL")]
+		public System.DateTime DOB
+		{
+			get
+			{
+				return this._DOB;
+			}
+			set
+			{
+				if ((this._DOB != value))
+				{
+					this.OnDOBChanging(value);
+					this.SendPropertyChanging();
+					this._DOB = value;
+					this.SendPropertyChanged("DOB");
+					this.OnDOBChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Weigth", DbType="Float NOT NULL")]
+		public double Weigth
+		{
+			get
+			{
+				return this._Weigth;
+			}
+			set
+			{
+				if ((this._Weigth != value))
+				{
+					this.OnWeigthChanging(value);
+					this.SendPropertyChanging();
+					this._Weigth = value;
+					this.SendPropertyChanged("Weigth");
+					this.OnWeigthChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Height", DbType="Float NOT NULL")]
+		public double Height
+		{
+			get
+			{
+				return this._Height;
+			}
+			set
+			{
+				if ((this._Height != value))
+				{
+					this.OnHeightChanging(value);
+					this.SendPropertyChanging();
+					this._Height = value;
+					this.SendPropertyChanged("Height");
+					this.OnHeightChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="Int NOT NULL")]
+		public int Gender
+		{
+			get
+			{
+				return this._Gender;
+			}
+			set
+			{
+				if ((this._Gender != value))
+				{
+					this.OnGenderChanging(value);
+					this.SendPropertyChanging();
+					this._Gender = value;
+					this.SendPropertyChanged("Gender");
+					this.OnGenderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Meals", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> Meals
+		{
+			get
+			{
+				return this._Meals;
+			}
+			set
+			{
+				if ((this._Meals != value))
+				{
+					this.OnMealsChanging(value);
+					this.SendPropertyChanging();
+					this._Meals = value;
+					this.SendPropertyChanged("Meals");
+					this.OnMealsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Meal", Storage="_Meals1", ThisKey="Id", OtherKey="IDUser")]
+		public EntitySet<Meal> Meals1
+		{
+			get
+			{
+				return this._Meals1;
+			}
+			set
+			{
+				this._Meals1.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Meals1(Meal entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Meals1(Meal entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
 		}
 	}
 	
@@ -357,240 +591,6 @@ namespace FoodDiaryBeta.Models.DBObjects
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[User]")]
-	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _Id;
-		
-		private string _Email;
-		
-		private System.DateTime _DOB;
-		
-		private double _Weigth;
-		
-		private double _Height;
-		
-		private string _Gender;
-		
-		private System.Nullable<System.Guid> _Meals;
-		
-		private EntitySet<Meal> _Meals1;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(System.Guid value);
-    partial void OnIdChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    partial void OnDOBChanging(System.DateTime value);
-    partial void OnDOBChanged();
-    partial void OnWeigthChanging(double value);
-    partial void OnWeigthChanged();
-    partial void OnHeightChanging(double value);
-    partial void OnHeightChanged();
-    partial void OnGenderChanging(string value);
-    partial void OnGenderChanged();
-    partial void OnMealsChanging(System.Nullable<System.Guid> value);
-    partial void OnMealsChanged();
-    #endregion
-		
-		public User()
-		{
-			this._Meals1 = new EntitySet<Meal>(new Action<Meal>(this.attach_Meals1), new Action<Meal>(this.detach_Meals1));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this.OnEmailChanging(value);
-					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DOB", DbType="Date NOT NULL")]
-		public System.DateTime DOB
-		{
-			get
-			{
-				return this._DOB;
-			}
-			set
-			{
-				if ((this._DOB != value))
-				{
-					this.OnDOBChanging(value);
-					this.SendPropertyChanging();
-					this._DOB = value;
-					this.SendPropertyChanged("DOB");
-					this.OnDOBChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Weigth", DbType="Float NOT NULL")]
-		public double Weigth
-		{
-			get
-			{
-				return this._Weigth;
-			}
-			set
-			{
-				if ((this._Weigth != value))
-				{
-					this.OnWeigthChanging(value);
-					this.SendPropertyChanging();
-					this._Weigth = value;
-					this.SendPropertyChanged("Weigth");
-					this.OnWeigthChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Height", DbType="Float NOT NULL")]
-		public double Height
-		{
-			get
-			{
-				return this._Height;
-			}
-			set
-			{
-				if ((this._Height != value))
-				{
-					this.OnHeightChanging(value);
-					this.SendPropertyChanging();
-					this._Height = value;
-					this.SendPropertyChanged("Height");
-					this.OnHeightChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string Gender
-		{
-			get
-			{
-				return this._Gender;
-			}
-			set
-			{
-				if ((this._Gender != value))
-				{
-					this.OnGenderChanging(value);
-					this.SendPropertyChanging();
-					this._Gender = value;
-					this.SendPropertyChanged("Gender");
-					this.OnGenderChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Meals", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> Meals
-		{
-			get
-			{
-				return this._Meals;
-			}
-			set
-			{
-				if ((this._Meals != value))
-				{
-					this.OnMealsChanging(value);
-					this.SendPropertyChanging();
-					this._Meals = value;
-					this.SendPropertyChanged("Meals");
-					this.OnMealsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Meal", Storage="_Meals1", ThisKey="Id", OtherKey="IDUser")]
-		public EntitySet<Meal> Meals1
-		{
-			get
-			{
-				return this._Meals1;
-			}
-			set
-			{
-				this._Meals1.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Meals1(Meal entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = this;
-		}
-		
-		private void detach_Meals1(Meal entity)
-		{
-			this.SendPropertyChanging();
-			entity.User = null;
 		}
 	}
 	
