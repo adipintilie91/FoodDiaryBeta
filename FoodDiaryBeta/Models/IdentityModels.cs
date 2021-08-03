@@ -21,7 +21,7 @@ namespace FoodDiaryBeta.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("FoodDiaryBetaDBConnectionString", throwIfV1Schema: false)
         {
         }
 

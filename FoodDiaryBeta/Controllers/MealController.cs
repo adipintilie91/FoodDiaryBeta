@@ -1,6 +1,7 @@
 ﻿using FoodDiaryBeta.Models;
 using FoodDiaryBeta.Models.DBObjects;
 using FoodDiaryBeta.Repository;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace FoodDiaryBeta.Controllers
         private Repository.MealRepository mealRepository = new Repository.MealRepository();
 
         // GET: Meal
+        [Authorize(Roles = "User, Admin")]
         public ActionResult Index()
         {
             //incarcam lista de meals
@@ -25,6 +27,7 @@ namespace FoodDiaryBeta.Controllers
         }
 
         // GET: Meal/Details/5
+        [Authorize(Roles = "User, Admin")]
         public ActionResult Details(Guid id)
         {
             //incarcam modelul pe baza id-ului
@@ -34,12 +37,14 @@ namespace FoodDiaryBeta.Controllers
             return View("MealDetails",mealModel);
         }
 
-        // GET: Meal/Create
 
         //adaugam referinta catre repository MealType
         //private MealTypeRepository mealTypeRepository = new MealTypeRepository();
         private ProductRepository productRepository = new ProductRepository();
 
+
+        // GET: Meal/Create
+        [Authorize(Roles = "User, Admin")]
         public ActionResult Create()
         {
 
@@ -51,6 +56,7 @@ namespace FoodDiaryBeta.Controllers
         }
 
         // POST: Meal/Create
+        [Authorize(Roles = "User, Admin")]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -62,6 +68,13 @@ namespace FoodDiaryBeta.Controllers
 
                 //incarcam datele in model
                 UpdateModel(mealModel);
+
+                //if (User.Identity.IsAuthenticated) // daca avem utilizator logat
+                //{
+                //    mealModel.ID = User.Identity.GetUserId();
+
+                //}
+
 
                 //apelam resursa care salveaza datele
                 mealRepository.InsertMeal(mealModel);
@@ -78,6 +91,7 @@ namespace FoodDiaryBeta.Controllers
         }
 
         // GET: Meal/Edit/5
+        [Authorize(Roles = "User, Admin")]
         public ActionResult Edit(Guid id)
         {
             //incarcarea datelor din db
@@ -88,6 +102,7 @@ namespace FoodDiaryBeta.Controllers
         }
 
         // POST: Meal/Edit/5
+        [Authorize(Roles = "User, Admin")]
         [HttpPost]
         public ActionResult Edit(Guid id, FormCollection collection)
         {
@@ -113,6 +128,7 @@ namespace FoodDiaryBeta.Controllers
         }
 
         // GET: Meal/Delete/5
+        [Authorize(Roles = "User, Admin")]
         public ActionResult Delete(Guid id)
         {
             //incarcam datele in model din db
@@ -124,6 +140,7 @@ namespace FoodDiaryBeta.Controllers
 
         // POST: Meal/Delete/5
         [HttpPost]
+        [Authorize(Roles = "User, Admin")]
         public ActionResult Delete(Guid id, FormCollection collection)
         {
             try

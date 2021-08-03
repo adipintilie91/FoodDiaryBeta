@@ -12,6 +12,7 @@ namespace FoodDiaryBeta.Controllers
         private Repository.UserRepository userRepository = new Repository.UserRepository();
 
         // GET: User
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             //incarcam lista de users
@@ -21,6 +22,7 @@ namespace FoodDiaryBeta.Controllers
         }
 
         // GET: User/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(Guid id)
         {
             //incarcam modelul pe baza id-ului
@@ -31,12 +33,14 @@ namespace FoodDiaryBeta.Controllers
         }
 
         // GET: User/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View("CreateUser");
         }
 
         // POST: User/Create
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -63,6 +67,7 @@ namespace FoodDiaryBeta.Controllers
         }
 
         // GET: User/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(Guid id)
         {
             //incarcarea datelor din db
@@ -72,6 +77,7 @@ namespace FoodDiaryBeta.Controllers
         }
 
         // POST: User/Edit/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Edit(Guid id, FormCollection collection)
         {
@@ -97,6 +103,7 @@ namespace FoodDiaryBeta.Controllers
         }
 
         // GET: User/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(Guid id)
         {
             //incarcam datele in model din DB
@@ -107,6 +114,7 @@ namespace FoodDiaryBeta.Controllers
         }
 
         // POST: User/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Delete(Guid id, FormCollection collection)
         {

@@ -13,6 +13,7 @@ namespace FoodDiaryBeta.Controllers
         private Repository.ProductRepository productRepository = new Repository.ProductRepository();
 
         // GET: Product
+        [Authorize(Roles = "User, Admin")]
         public ActionResult Index()
         {
             //incarcam lista de produse
@@ -23,6 +24,7 @@ namespace FoodDiaryBeta.Controllers
         }
 
         // GET: Product/Details/5
+        [Authorize(Roles = "User, Admin")]
         public ActionResult Details(Guid id)
         {
             //incarcam modelul pe baza Id-ului
@@ -33,12 +35,14 @@ namespace FoodDiaryBeta.Controllers
         }
 
         // GET: Product/Create
+        [Authorize(Roles = "User, Admin")]
         public ActionResult Create()
         {
             return View("CreateProduct");
         }
 
         // POST: Product/Create
+        [Authorize(Roles = "User, Admin")]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -65,6 +69,7 @@ namespace FoodDiaryBeta.Controllers
         }
 
         // GET: Product/Edit/5
+        [Authorize(Roles = "User, Admin")]
         public ActionResult Edit(Guid id)
         {
             //incarcarea datelor din db
@@ -75,6 +80,7 @@ namespace FoodDiaryBeta.Controllers
         }
 
         // POST: Product/Edit/5
+        [Authorize(Roles = "User, Admin")]
         [HttpPost]
         public ActionResult Edit(Guid id, FormCollection collection)
         {
@@ -100,6 +106,7 @@ namespace FoodDiaryBeta.Controllers
         }
 
         // GET: Product/Delete/5
+        [Authorize(Roles = "User, Admin")]
         public ActionResult Delete(Guid id)
         {
             //incarcam datele in model din db
@@ -110,6 +117,7 @@ namespace FoodDiaryBeta.Controllers
         }
 
         // POST: Product/Delete/5
+        [Authorize(Roles = "User, Admin")]
         [HttpPost]
         public ActionResult Delete(Guid id, FormCollection collection)
         {
