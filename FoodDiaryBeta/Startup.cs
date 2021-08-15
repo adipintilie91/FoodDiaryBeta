@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using System.Web.Http.Controllers;
 
 [assembly: OwinStartupAttribute(typeof(FoodDiaryBeta.Startup))]
 namespace FoodDiaryBeta
@@ -10,5 +11,8 @@ namespace FoodDiaryBeta
         {
             ConfigureAuth(app);
         }
+
+        
+
     }
 }

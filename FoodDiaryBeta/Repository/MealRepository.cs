@@ -2,6 +2,7 @@
 using FoodDiaryBeta.Models.DBObjects;
 using Microsoft.Ajax.Utilities;
 using System;
+using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
@@ -73,6 +74,19 @@ namespace FoodDiaryBeta.Repository
 
             return mealList;
         }
+
+        //public List<MealModel> GetAllMealsByUserID()
+        //{
+        //    List<MealModel> mealList = new List<MealModel>();
+
+        //    foreach (Models.DBObjects.Meal dbMeal in dbContext.Meals.Where(x => x.IDUser == User.Identity.GetUser()))
+        //    {
+        //        mealList.Add(MapDbObjectToModel(dbMeal));
+        //    }
+        //    //IQueryable<MealModel> list = mealList.AsQueryable();
+
+        //    return mealList;
+        //}
 
         public List<MealModel> GetMealsByMealDate(DateTime dateTime)
         {

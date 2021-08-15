@@ -19,7 +19,7 @@ namespace FoodDiaryBeta.Controllers
         [Authorize(Roles = "User, Admin")]
         public ActionResult Index()
         {
-            //incarcam lista de meals
+            //incarcam lista de 
             List<Models.MealModel> meals = mealRepository.GetAllMeals();
 
             //incarcam view-ul cu lista de modele
@@ -135,7 +135,7 @@ namespace FoodDiaryBeta.Controllers
             Models.MealModel mealModel = mealRepository.GetMealByID(id);
 
             //incarcam view-ul cu modelul atasat
-            return View("DeleteMeal", mealModel);
+            return View("Delete", mealModel);
         }
 
         // POST: Meal/Delete/5
@@ -154,7 +154,7 @@ namespace FoodDiaryBeta.Controllers
             }
             catch
             {
-                return View("DeleteMeal");
+                return View("Delete");
             }
         }
     }
